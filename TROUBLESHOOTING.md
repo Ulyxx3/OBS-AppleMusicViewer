@@ -7,7 +7,7 @@ Si vous rencontrez l'erreur `Le fichier projet n'existe pas`, suivez ces étapes
 Après avoir cloné ou téléchargé le projet, vérifiez que vous avez **tous ces fichiers** :
 
 ```
-OBS-AppleMusicViewer/
+OBS-StreamMusicViewer/
 ├── .gitignore
 ├── LICENSE
 ├── MediaInfoGetter.cs          ← IMPORTANT
@@ -26,13 +26,13 @@ OBS-AppleMusicViewer/
 ```bash
 # Supprimer le dossier téléchargé
 # Cloner à nouveau
-git clone https://github.com/Ulyxx3/OBS-AppleMusicViewer.git
-cd OBS-AppleMusicViewer
+git clone https://github.com/Ulyxx3/OBS-StreamMusicViewer.git
+cd OBS-StreamMusicViewer
 ```
 
 ### Option 2 : Télécharger le ZIP depuis GitHub
 
-1. Allez sur https://github.com/Ulyxx3/OBS-AppleMusicViewer
+1. Allez sur https://github.com/Ulyxx3/OBS-StreamMusicViewer
 2. Cliquez sur **Code** → **Download ZIP**
 3. Extrayez **TOUT** le contenu (pas seulement certains fichiers)
 4. Vérifiez que `MediaInfoGetter.csproj` est bien présent
@@ -41,7 +41,7 @@ cd OBS-AppleMusicViewer
 
 Au lieu de compiler, téléchargez la **Release** qui contient l'exécutable pré-compilé :
 1. Allez dans l'onglet **Releases**
-2. Téléchargez `OBS-AppleMusicViewer-v1.0.0-precompiled.zip`
+2. Téléchargez `OBS-StreamMusicViewer-v1.0.0-precompiled.zip`
 3. Pas besoin de compiler ! Lancez directement `python main.py`
 
 ## ⚠️ Erreurs Courantes
