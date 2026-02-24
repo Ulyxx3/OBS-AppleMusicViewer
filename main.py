@@ -44,9 +44,11 @@ class NowPlayingTracker:
                 ],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='replace',
                 timeout=5
             )
-            output = result.stdout.strip()
+            output = result.stdout.strip() if result.stdout else ""
             
             if not output or output == "NO_TRACK":
                 return None
