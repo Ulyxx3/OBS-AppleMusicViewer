@@ -1,66 +1,50 @@
-# 🔍 Guide de Vérification après Téléchargement
+# 🔍 Guide de Dépannage (Troubleshooting)
 
-Si vous rencontrez l'erreur `Le fichier projet n'existe pas`, suivez ces étapes :
+## ✅ Vérification des Fichiers Source
 
-## ✅ Vérification des Fichiers
-
-Après avoir cloné ou téléchargé le projet, vérifiez que vous avez **tous ces fichiers** :
+Si vous avez cloné ou téléchargé le code source pour le compiler vous-même, vérifiez que vous avez ces fichiers principaux :
 
 ```
 OBS-StreamMusicViewer/
 ├── .gitignore
-├── LICENSE
-├── MediaInfoGetter.cs          ← IMPORTANT
-├── MediaInfoGetter.csproj      ← CRITIQUE - fichier projet C#
+├── App.xaml                  ← Interface base
+├── App.xaml.cs
+├── MainWindow.xaml           ← Design de la fenêtre
+├── MainWindow.xaml.cs        ← Logique de récupération de musique
+├── OBS-StreamMusicViewer.csproj ← CRITIQUE - fichier projet
 ├── README.md
-├── compile.bat
-├── index.html
-├── main.py
-└── style.css
+├── compile.bat               ← Script de compilation
+├── index.html                ← Affichage pour OBS
+└── style.css                 ← Styles pour OBS
 ```
 
-## 🐛 Solutions si MediaInfoGetter.csproj est manquant
+## 🐛 Problèmes Fréquents & Solutions
 
-### Option 1 : Re-cloner le Repository
+### 1. La façon la plus simple (Pas besoin de compiler !)
+Si vous rencontrez des erreurs de compilation, abandonnez la ligne de commande et téléchargez simplement la **Release**.
+1. Allez dans l'onglet **Releases** de GitHub.
+2. Téléchargez l'exécutable `OBS-StreamMusicViewer.exe` ou le fichier ZIP contenant la release.
+3. Lancez le fichier `.exe` généré. Aucun outil de développement ou ligne de commande n'est requis !
 
-```bash
-# Supprimer le dossier téléchargé
-# Cloner à nouveau
-git clone https://github.com/Ulyxx3/OBS-StreamMusicViewer.git
-cd OBS-StreamMusicViewer
-```
+### 2. Le script "compile.bat" affiche une erreur de namespace / projet manquant
+**Cause** : Le fichier `.csproj` n'est pas trouvé par la commande `dotnet` ou le clone a mal fonctionné.
+**Solution** : Assurez-vous d'être bien dans le bon dossier. Vous pouvez aussi télécharger le ZIP du code source (`Code → Download ZIP`) depuis Github pour être sûr d'avoir tous les fichiers intacts.
 
-### Option 2 : Télécharger le ZIP depuis GitHub
+### 3. "dotnet n'est pas reconnu en tant que commande"
+**Cause** : Le .NET SDK n'est pas installé sur votre ordinateur.
+**Solution** : 
+1. Installez-le depuis https://dotnet.microsoft.com/download/dotnet
+2. **Redémarrez** absolument votre terminal ou votre PC pour que la variable d'environnement soit prise en compte, puis relancez `compile.bat`.
 
-1. Allez sur https://github.com/Ulyxx3/OBS-StreamMusicViewer
-2. Cliquez sur **Code** → **Download ZIP**
-3. Extrayez **TOUT** le contenu (pas seulement certains fichiers)
-4. Vérifiez que `MediaInfoGetter.csproj` est bien présent
-
-### Option 3 : Utiliser la Release (plus simple)
-
-Au lieu de compiler, téléchargez la **Release** qui contient l'exécutable pré-compilé :
-1. Allez dans l'onglet **Releases**
-2. Téléchargez `OBS-StreamMusicViewer-v1.0.0-precompiled.zip`
-3. Pas besoin de compiler ! Lancez directement `python main.py`
-
-## ⚠️ Erreurs Courantes
-
-### Erreur : "Le fichier projet n'existe pas"
-**Cause** : Le fichier `.csproj` n'a pas été téléchargé
-**Solution** : Re-télécharger le projet complet (voir Option 1 ou 2)
-
-### Erreur : "dotnet command not found"
-**Cause** : .NET SDK n'est pas installé
-**Solution** : Installer depuis https://dotnet.microsoft.com/download/dotnet
-
-### Erreur : "Access denied" lors de la compilation
-**Cause** : Permissions insuffisantes
-**Solution** : Lancer PowerShell en administrateur
+### 4. Le widget OBS affiche "Waiting for music..." mais une musique joue
+**Cause** : Le navigateur web de base (OBS) ou le programme (`OBS-StreamMusicViewer.exe`) a un problème de permissions, ou l'application musicale ne diffuse pas l'info à Windows.
+**Solution** :
+- Vérifiez que la fenêtre `OBS-StreamMusicViewer.exe` détecte bien la musique. Si oui, le problème vient d'OBS.
+- Assurez-vous que le fichier `index.html` ouvert dans OBS est bien situé **dans le même dossier** que `current_song.json`.
+- Si c'est un navigateur source (ex: Chrome/Youtube) qui joue la musique, vérifiez que les "Contrôles multimédias globaux" ne sont pas désactivés dans les paramètres du navigateur.
 
 ## 💡 Support
 
-Si le problème persiste, ouvrez une **Issue** sur GitHub avec :
-- Le message d'erreur complet
-- La liste des fichiers présents dans votre dossier
-- Votre version de Windows et .NET SDK (`dotnet --version`)
+Si votre problème persiste malgré la version pré-compilée, ouvrez une **Issue** sur GitHub en précisant :
+- Le comportement observé et l'application musicale utilisée (Spotify, Apple Music, Navigateur...)
+- Votre version de Windows (10 ou 11)

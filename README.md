@@ -2,88 +2,67 @@
 
 ![Status](https://img.shields.io/badge/status-working-success)
 ![Platform](https://img.shields.io/badge/platform-Windows%2011-blue)
-![Python](https://img.shields.io/badge/python-3.14-blue)
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
 
-A real-time "Now Playing" widget for OBS that displays currently playing music from Apple Music (and other media apps) with album artwork.
+A real-time "Now Playing" widget for OBS that displays currently playing music from Apple Music (and other media apps) with album artwork. It runs entirely as a lightweight standalone Windows application!
 
 ## ✨ Features
 
 - 🎵 **Real-time updates** - Automatically detects currently playing music
 - 🖼️ **Album artwork** - Displays full-resolution album covers
-- 🎨 **Modern UI** - Glassmorphism design with smooth transitions
+- 🎨 **Modern UI** - Sleek, dark-themed, borderless window
 - 🔄 **Background operation** - Works even when the music app isn't the active window
 - 🎯 **Multi-app support** - Compatible with Apple Music, Spotify, Chrome, Edge, and more
-- 🪟 **Windows Media Control** - Uses native Windows APIs for reliable detection
+- 🪟 **Native Windows API** - Uses `GlobalSystemMediaTransportControlsSessionManager` for reliable detection
+- ⚡ **Zero Dependencies** - Self-contained single executable, no Python required!
 
 ## 📸 Preview
 
-The widget displays:
-- Song title
-- Artist name
-- Album artwork
-- Clean, transparent background for OBS
+The widget application displays:
+- Song title & Artist name
+- High quality album artwork
+- Playback status
 
-## 🔧 Requirements
+And behind the scenes, it continually exports to a `current_song.json` file which powers the OBS browser source with a clean, transparent, glassmorphism design.
 
-- **Windows 11** (or Windows 10 with Media Control support)
-- **Python 3.x** (tested with 3.14)
-- **.NET SDK** (6.0 or later) - for compiling the helper executable
+## 🚀 Quick Start (Easiest Way)
 
-## 📦 Installation
+You do not need to install any programming languages or tools if you just want to use the application.
 
-### 1. Install .NET SDK
+1. Go to the **[Releases](../../releases)** page on this GitHub repository.
+2. Download the latest `OBS-StreamMusicViewer.exe` (or the provided `.zip` file).
+3. Place `.exe`, `index.html`, and `style.css` in a single folder.
+4. Double click `OBS-StreamMusicViewer.exe` to start the tracker window.
+5. Setup OBS (see below).
 
-Download and install the .NET SDK from: https://dotnet.microsoft.com/download/dotnet
+---
 
-After installation, restart your terminal/PowerShell.
+## 🔧 Compiling from Source
 
-### 2. Clone the Repository
+If you want to modify the code or compile it yourself:
 
-```bash
-git clone https://github.com/yourusername/ViewAppleMusic.git
-cd ViewAppleMusic/1.0
-```
+### Requirements
+- **Windows 10/11**
+- **.NET 8.0 SDK** (Download from: https://dotnet.microsoft.com/download/dotnet)
 
-### 3. Compile the C# Helper
+### Compilation Steps
+1. Clone the repository: `git clone https://github.com/Ulyxx3/OBS-StreamMusicViewer.git`
+2. Run the provided script: `compile.bat`
+3. The script will generate the standalone `OBS-StreamMusicViewer.exe` executable.
 
-```bash
-# On Windows, simply run:
-compile.bat
-
-# Or manually:
-dotnet publish MediaInfoGetter.csproj -c Release -o .
-```
-
-This will create `MediaInfoGetter.exe` in the current directory.
-
-### 4. Run the Backend
-
-```bash
-python main.py
-```
-
-You should see output like:
-```
-🎵 Now Playing Tracker démarré (C# Helper)
-📁 Fichier de sortie: ...\current_song.json
-⏱️  Intervalle de mise à jour: 1.0s
-🎧 Compatible avec: Apple Music, Spotify, Chrome, Edge, etc.
-```
-
-### 5. Configure OBS
+## 📺 Configure OBS
 
 1. In OBS, add a new **Browser** source
 2. ☑️ Check "Local file"
-3. 📁 Browse and select `index.html` from this project
+3. 📁 Browse and select `index.html` from the extracted folder
 4. Set dimensions: **Width: 500**, **Height: 140**
 5. Click OK
 
-The widget should now display your currently playing music!
+*As long as `OBS-StreamMusicViewer.exe` is running, your OBS widget will update instantly.*
 
 ## 🎨 Customization
 
-Edit `style.css` to customize:
+Edit `style.css` to customize the OBS visual aspect:
 - Colors and transparency
 - Album artwork size
 - Widget position
@@ -96,9 +75,7 @@ Apple Music/Spotify
     ↓
 Windows Media Control API
     ↓
-MediaInfoGetter.exe (C# helper)
-    ↓
-main.py (Python backend)
+OBS-StreamMusicViewer.exe (C# WPF App)
     ↓
 current_song.json
     ↓
@@ -107,42 +84,14 @@ index.html (Frontend with polling)
 OBS Browser Source
 ```
 
-The C# helper accesses Windows Runtime APIs to retrieve media information, which Python processes and exports as JSON. The HTML interface polls this JSON file every second to update the display.
+The C# application gracefully accesses Windows Runtime APIs to retrieve media information and continuously exports it as JSON. The HTML interface polls this JSON file to beautifully animate changes in OBS.
 
 ## 🐛 Troubleshooting
 
-### Widget shows "No music playing"
-- Make sure music is actually playing in Apple Music/Spotify
-- Verify `python main.py` is running in the background
-- Check that `current_song.json` is being generated
-
-### "dotnet" command not found
-- Install .NET SDK and restart your terminal
-- Verify installation: `dotnet --version`
-
-### No album artwork displayed
-- Some tracks may not have artwork available
-- Check console output for errors
-
-## 📝 Technical Details
-
-- **Backend**: Python 3.14 + C# (.NET 8.0)
-- **API**: Windows `GlobalSystemMediaTransportControlsSessionManager`
-- **Frontend**: HTML5 + CSS3 (Vanilla JavaScript)
-- **Data Format**: JSON with base64-encoded album artwork
+See the [TROUBLESHOOTING.md](TROUBLESHOOTING.md) guide.
 
 ## 🤝 Contributing
-
 Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## 📄 License
-
 MIT License - feel free to use this project for personal or commercial purposes.
-
-## 🙏 Credits
-
-Created for OBS streamers who want to display their music taste without third-party services.
-
-## ⭐ Support
-
-If this project helps you, consider giving it a star on GitHub!
