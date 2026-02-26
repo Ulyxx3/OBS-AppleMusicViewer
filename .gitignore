@@ -33,3 +33,7 @@ desktop.ini
 # Temporary documentation (keep only README.md)
 NEXT_STEP.md
 SUCCESS.md
+
+*.dll
+*.exe
+current_song.json
