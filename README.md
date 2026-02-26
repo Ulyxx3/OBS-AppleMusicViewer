@@ -90,6 +90,13 @@ The C# application gracefully accesses Windows Runtime APIs to retrieve media in
 
 See the [TROUBLESHOOTING.md](TROUBLESHOOTING.md) guide.
 
+## 🤩 Future
+In the future, i want to add :
+- an audio visualiser
+- a bar for where we are on the music 
+- the color changing with the color of the album cover
+- a better support for sites (like newgrounds) where there is no cover or artist support (maybe get rid of the Windows Media Control limits)
+
 ## 🤝 Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.
 
