@@ -4,6 +4,7 @@
         Title="OBS Stream Music Viewer" Height="150" Width="380"
         Background="#18181A" WindowStyle="ToolWindow" 
         ResizeMode="NoResize" Topmost="True"
+        Icon="OSMV_logo.ico"
         Closing="Window_Closing">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>

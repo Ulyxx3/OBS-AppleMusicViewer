@@ -12,7 +12,7 @@
     <SelfContained>true</SelfContained>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
-    <ApplicationIcon/>
+    <ApplicationIcon>OSMV_logo.ico</ApplicationIcon>
     <!-- The missing icon will use default -->
   </PropertyGroup>
 
