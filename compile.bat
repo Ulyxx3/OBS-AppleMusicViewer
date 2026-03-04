@@ -16,6 +16,11 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
+REM Fermer l'application si elle tourne (pour libérer le .exe avant de l'écraser)
+echo Fermeture de l'application si elle est en cours d'exécution...
+taskkill /F /IM "OBS-StreamMusicViewer.exe" >nul 2>&1
+timeout /t 1 /nobreak >nul
+
 REM Compiler le projet
 dotnet publish OBS-StreamMusicViewer.csproj -c Release -o .
 

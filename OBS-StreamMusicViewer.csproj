@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <UseWpf>true</UseWpf>
+    <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>OBS_StreamMusicViewer</RootNamespace>
     <AssemblyName>OBS-StreamMusicViewer</AssemblyName>
     <Nullable>disable</Nullable>
