@@ -1,50 +1,50 @@
-# 🔍 Guide de Dépannage (Troubleshooting)
+# 🔍 Troubleshooting Guide
 
-## ✅ Vérification des Fichiers Source
+## ✅ Checking Source Files
 
-Si vous avez cloné ou téléchargé le code source pour le compiler vous-même, vérifiez que vous avez ces fichiers principaux :
+If you cloned or downloaded the source code to compile it yourself, make sure you have these main files:
 
 ```
 OBS-StreamMusicViewer/
 ├── .gitignore
-├── App.xaml                  ← Interface base
+├── App.xaml                  ← Base interface
 ├── App.xaml.cs
-├── MainWindow.xaml           ← Design de la fenêtre
-├── MainWindow.xaml.cs        ← Logique de récupération de musique
-├── OBS-StreamMusicViewer.csproj ← CRITIQUE - fichier projet
+├── MainWindow.xaml           ← Window design
+├── MainWindow.xaml.cs        ← Music retrieval logic
+├── OBS-StreamMusicViewer.csproj ← CRITICAL - project file
 ├── README.md
-├── compile.bat               ← Script de compilation
-├── index.html                ← Affichage pour OBS
-└── style.css                 ← Styles pour OBS
+├── compile.bat               ← Compilation script
+├── index.html                ← OBS display
+└── style.css                 ← OBS styles
 ```
 
-## 🐛 Problèmes Fréquents & Solutions
+## 🐛 Common Issues & Solutions
 
-### 1. La façon la plus simple (Pas besoin de compiler !)
-Si vous rencontrez des erreurs de compilation, abandonnez la ligne de commande et téléchargez simplement la **Release**.
-1. Allez dans l'onglet **Releases** de GitHub.
-2. Téléchargez l'exécutable `OBS-StreamMusicViewer.exe` ou le fichier ZIP contenant la release.
-3. Lancez le fichier `.exe` généré. Aucun outil de développement ou ligne de commande n'est requis !
+### 1. The easiest way (No need to compile!)
+If you encounter compilation errors, skip the command line and simply download the **Release**.
+1. Go to the **Releases** tab on GitHub.
+2. Download the `OBS-StreamMusicViewer.exe` executable or the ZIP file containing the release.
+3. Run the `.exe` file. No development tools or command line required!
 
-### 2. Le script "compile.bat" affiche une erreur de namespace / projet manquant
-**Cause** : Le fichier `.csproj` n'est pas trouvé par la commande `dotnet` ou le clone a mal fonctionné.
-**Solution** : Assurez-vous d'être bien dans le bon dossier. Vous pouvez aussi télécharger le ZIP du code source (`Code → Download ZIP`) depuis Github pour être sûr d'avoir tous les fichiers intacts.
+### 2. The "compile.bat" script shows a namespace / missing project error
+**Cause**: The `.csproj` file is not found by the `dotnet` command, or the clone went wrong.
+**Solution**: Make sure you are in the correct folder. You can also download the source code ZIP (`Code → Download ZIP`) from GitHub to ensure you have all files intact.
 
-### 3. "dotnet n'est pas reconnu en tant que commande"
-**Cause** : Le .NET SDK n'est pas installé sur votre ordinateur.
-**Solution** : 
-1. Installez-le depuis https://dotnet.microsoft.com/download/dotnet
-2. **Redémarrez** absolument votre terminal ou votre PC pour que la variable d'environnement soit prise en compte, puis relancez `compile.bat`.
+### 3. "dotnet is not recognized as a command"
+**Cause**: The .NET SDK is not installed on your computer.
+**Solution**:
+1. Install it from https://dotnet.microsoft.com/download/dotnet
+2. **Restart** your terminal or PC so the environment variable is picked up, then run `compile.bat` again.
 
-### 4. Le widget OBS affiche "Waiting for music..." mais une musique joue
-**Cause** : Le navigateur web de base (OBS) ou le programme (`OBS-StreamMusicViewer.exe`) a un problème de permissions, ou l'application musicale ne diffuse pas l'info à Windows.
-**Solution** :
-- Vérifiez que la fenêtre `OBS-StreamMusicViewer.exe` détecte bien la musique. Si oui, le problème vient d'OBS.
-- Assurez-vous que le fichier `index.html` ouvert dans OBS est bien situé **dans le même dossier** que `current_song.json`.
-- Si c'est un navigateur source (ex: Chrome/Youtube) qui joue la musique, vérifiez que les "Contrôles multimédias globaux" ne sont pas désactivés dans les paramètres du navigateur.
+### 4. The OBS widget shows "Waiting for music..." but music is playing
+**Cause**: The built-in web browser (OBS) or the program (`OBS-StreamMusicViewer.exe`) has a permissions issue, or the music application is not broadcasting the info to Windows.
+**Solution**:
+- Check that the `OBS-StreamMusicViewer.exe` window is correctly detecting the music. If it is, the issue is on the OBS side.
+- Make sure the `index.html` file opened in OBS is located **in the same folder** as `current_song.json`.
+- If a browser source (e.g. Chrome/YouTube) is playing the music, check that "Global Media Controls" are not disabled in your browser settings.
 
 ## 💡 Support
 
-Si votre problème persiste malgré la version pré-compilée, ouvrez une **Issue** sur GitHub en précisant :
-- Le comportement observé et l'application musicale utilisée (Spotify, Apple Music, Navigateur...)
-- Votre version de Windows (10 ou 11)
+If your issue persists even with the pre-compiled release, open an **Issue** on GitHub and include:
+- The observed behavior and the music application you are using (Spotify, Apple Music, Browser…)
+- Your Windows version (10 or 11)
